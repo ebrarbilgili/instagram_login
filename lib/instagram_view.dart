@@ -35,10 +35,14 @@ class InstagramView extends StatelessWidget {
 
               print('${instagram.username} logged in!');
 
-              await Navigator.of(context).push(MaterialPageRoute(
+              await Navigator.of(context).push(
+                MaterialPageRoute(
                   builder: (context) => HomeView(
-                      token: instagram.authorizationCode.toString(),
-                      name: instagram.username.toString())));
+                    token: instagram.authorizationCode.toString(),
+                    name: instagram.username.toString(),
+                  ),
+                ),
+              );
             });
           }
         });

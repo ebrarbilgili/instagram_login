@@ -5,14 +5,6 @@ import 'package:instagram_login/instagram_constant.dart';
 
 class InstagramModel {
   List<String> userFields = ['id', 'username'];
-  List<String> mediasListFields = ['id', 'caption'];
-  List<String> mediaFields = [
-    'id',
-    'media_type',
-    'media_url',
-    'username',
-    'timestamp'
-  ];
 
   String? authorizationCode;
   String? accessToken;
@@ -44,15 +36,12 @@ class InstagramModel {
     final fields = userFields.join(',');
     final responseNode = await http.get(Uri.parse(
         'https://graph.instagram.com/$userID?fields=$fields&access_token=$accessToken'));
-    // 'https://graph.instagram.com/$userID?fields=$fields&access_token=$accessToken'
     var instaProfile = {
       'id': json.decode(responseNode.body)['id'].toString(),
       'username': json.decode(responseNode.body)['username'],
     };
-
     username = json.decode(responseNode.body)['username'];
     print('username: $username');
-    // ignore: unnecessary_null_comparison
     return instaProfile != null ? true : false;
   }
 }
